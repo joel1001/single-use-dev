@@ -1,0 +1,70 @@
+/* ----------- Player Pannel ----------- */
+.centered {
+  padding: 30px;
+  font-size: 10rem;
+  
+}
+
+.buttons-container {
+  position: fixed;
+  top: 3rem;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.preset-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -10rem;
+  padding-bottom: 3rem;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+}
+
+.player-button {
+  margin-bottom: 1rem;
+  padding: 2rem;
+  background-color: #fff;
+  box-shadow: 0 2rem 6rem rgba(255,255,255,.6);
+  border-top-right-radius: 0.8rem;
+  border-bottom-right-radius: 0.8rem;
+} 
+
+.player-button-black {
+  margin-bottom: 1rem;
+  padding: 2rem;
+  background-color: #000;
+  box-shadow: 0 2rem 6rem rgba(0,0,0,.6);
+  border-top-right-radius: 0.8rem;
+  border-bottom-right-radius: 0.8rem;
+}
+
+.icon-size {
+  font-size: 3rem;
+  color: var(--color-medium-gray);
+}
+
+.icon-size-white {
+  font-size: 3rem;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.btn {
+  background-color: transparent;
+  padding: 1.5rem 3rem;
+  width: 320px;
+  font-family: 'Urbanist', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  border-radius: 0.6rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+}

@@ -1,0 +1,120 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,300&display=swap');
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 900px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+:root {
+  --color-medium-gray: #88898B;
+  --box-shadow: 0 -2rem 6rem rgba(255,255,255, 1);
+}
+
+body {
+  margin: 0;
+  font-family: 'Urbanist', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+a,
+a:link,
+a:visited {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* --------------- buttons ----------------- */
+.btn-gray {
+  font-size: 1.6rem;
+  background-color: var(--color-medium-gray);
+  padding: 1rem 2rem;
+  color: #fff;
+  margin: 1rem 0;
+  margin-bottom: 2rem;
+  width: 100px;
+}
+
+/* ------------------ Overwrite Styles ------------------- */
+.ant-select-focused .ant-select-selector,
+.ant-select-selector:focus,
+.ant-select-selector:active,
+.ant-select-selector:hover,
+.ant-select-open .ant-select-selector {
+  border-color: #d9d9d9 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+/********************* Added by omkar ****************/
+.configure-manifold .icon-manifold{
+  font-size: 0;
+}
+.configure-manifold .icon-manifold-outline{
+  font-size: 5.0rem;
+  color: #000000;
+  font-weight: 900;
+}
+.configure-manifold .manifold-btn-right{
+  float: right;
+  position: absolute;
+  right: 0;
+  z-index: 11;
+}
+.ant-dropdown-menu-item, .ant-dropdown-menu-submenu-title{
+  padding: 5px 50px;
+}
+.modalPopup .ant-modal-header{border-bottom: 0;}
+.modalPopup .ant-modal-title{font-size: 3rem;font-weight: 900;padding-top: 3rem;}
+.modalPopup h3 {
+  position: absolute;
+  top: 70px;
+}
+.pdfShareForm label {
+  font-weight: 900;
+  font-size: 2rem;
+}
+.pdfShareForm .ant-input, .pdfShareForm .ant-input:hover{
+  min-height: 50px;
+  background-color: #ececed;
+}
+.pdfShareForm .ant-input:focus-within{outline: 0;}
+.buttonCol{
+  text-align: center;
+  margin-top: 30px;
+}
+.ant-form-item-control-input-content button{
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 15px 20px;
+    background-color: #08411f;
+    color: #ffffff;
+    width: 85%;
+    float: right;
+    border-radius: 5px;
+}
+
+.container{
+  display: flex;
+  width: 100%;
+  max-width: none;
+}
+#threekit-embed .threekit .logo___1S7LO{
+  display: none;
+}
+#threekit-embed .threekit .buttons___2UtMn{
+  display: none;
+}

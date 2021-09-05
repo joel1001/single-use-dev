@@ -1,0 +1,68 @@
+/* ------------- Player ------------- */
+#player-container {
+  width: 40vw;
+  height: 100vh;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.preset-container #player-container {
+  margin-top: 25%;
+  height: 60vh;
+}
+.threekit{
+  margin-top: 15%;
+  width: 100%;
+}
+.threekit-preview {
+  width: 40vw;
+  height: 100vh;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.threekit-preview-full-width {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+} 
+
+@media only screen and (max-width: 1200px) {
+  #player-container {
+    width: 100vw;
+    height: 60vh;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .threekit-preview {
+    width: 100vw;
+    height: 60vh;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .threekit-preview-full-width {
+    width: 100vw;
+    height: 60vh;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+  } 
+
+  .manifold-btn-rigth,
+  .manifold-btn-left {
+    display: none !important;
+  }
+}
