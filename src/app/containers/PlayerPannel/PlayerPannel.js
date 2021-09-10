@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import Button from "../../components/Button/Button";
 import ModalCommon from '../../util/Modal/modalCommon';
 import { Menu, Dropdown, Input, Row, Col, Form, Icon } from 'antd';
-import  Accordion from 'react-bootstrap/Accordion';	
+//import  {Accordion} from 'react-bootstrap';	
+import Accordion from 'react-bootstrap/Accordion'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
+import singleUseVideo from "../../../assets/3D-konfigurator-sus.mp4";
+
 import {
     QuestionCircleOutlined,
     FundProjectionScreenOutlined,
@@ -14,7 +17,9 @@ import {
     CheckCircleOutlined
 } from '@ant-design/icons';
 import "./PlayerPannel.css";
+
 const screenWidth = window.screen.width;
+const { TextArea } = Input;
 
 const customStyles = {
     overlay: {
@@ -72,8 +77,8 @@ const PlayerPannel = (props) => {
   const showVideoModal = () => {
 
     return (
-      <div>
-          <VideoPlayer url="https://www.youtube.com/watch?v=cRmJMzbVG0o&ab_channel=Threekit3D%26AugmentedReality"/>
+      <div className="video-player-box">
+          <VideoPlayer url={singleUseVideo}/>
       </div>
     )
   };
@@ -82,7 +87,7 @@ const PlayerPannel = (props) => {
 
     return (
       <div>
-        <h3>We will answer you soon</h3>
+        <h3 className="pdf-share-title">We will answer you soon</h3>
         <div className="pdfShareForm">
           {/* <Row>
               <Col span={12}><label>Email</label></Col>
@@ -146,18 +151,13 @@ const PlayerPannel = (props) => {
                     }
                   ]}
                 >
-
-                  <textarea placeholder="Write a message..." rows='10' cols='100' />
+                  <TextArea placeholder="Write a message..." rows={6} />
                 </Form.Item>
-                <Form.Item
-                  wrapperCol={{
-                    offset: 12,
-                    span: 12,
-                    align: 'center'
-                  }}
-                >
-                  <Button type="primary" htmlType="submit" label="SEND" style={{ verticalAlign: 'middle' }} onClickHandler={() => { showModal('success', '') }}/>
-                </Form.Item>
+                <div className="send-button-box">
+                  <Form.Item>
+                    <Button type="primary" htmlType="submit" label="SEND" className="send-button" onClickHandler={() => { showModal('success', '') }}/>
+                  </Form.Item>
+                </div>
               </Form>
             </Col>
           </Row>
@@ -194,11 +194,11 @@ const PlayerPannel = (props) => {
   const showInfoModal = () => {
 
     return (
-      <div style={{marginLeft:'40%'}}>
+      <div className="info-modal-container">
         <div><InfoCircleOutlined className="centered" /> </div>
         <div>
           <h1>If you don't have the real sizes,</h1>
-          <div>you could use approximate sizes.We stay tuned</div>
+          <div className="pdf-share-title">you could use approximate sizes.We stay tuned</div>
         </div>
       </div>
     )
@@ -221,8 +221,8 @@ const PlayerPannel = (props) => {
     <div>
       <div className="buttons-container">
         {/*<PlayerButton icon={<QuestionCircleOutlined className="icon-size" />} onClickHandler={() => {}}/>*/}
-       {/* <Button label={null} className={className} icon={<QuestionCircleOutlined className={iconClassName} />} onClickHandler={() => { showModal('questions', 'FAQ') }} />*/}
-        <Button label={null} className={className} icon={<FundProjectionScreenOutlined className={iconClassName} />} onClickHandler={() => { showModal('video', 'Single Use Support') }} />
+       {/*<Button label={null} className={className} icon={<QuestionCircleOutlined className={iconClassName} />} onClickHandler={() => { showModal('questions', 'FAQ') }} />
+       */} <Button label={null} className={className} icon={<FundProjectionScreenOutlined className={iconClassName} />} onClickHandler={() => { showModal('video', 'Single Use Support') }} />
         <Button label={null} className={className} icon={<MessageOutlined className={iconClassName} />} onClickHandler={() => { showModal('message', "Share your questions and comments") }} />
         <Button label={null} className={className} icon={<ExclamationCircleOutlined className={iconClassName} />} onClickHandler={() => { showModal('info', '') }} />
       </div>

@@ -24,7 +24,7 @@ const Carousel = (props) => {
     '89f9bbef-4a2a-40c4-b5f8-4c8361257e69',
     '4752a912-7e81-48c1-9da6-88dcf7c85dac',
     '151afdf1-4b67-402d-8b66-e35aa430b6cc',
-    'b1024215-eb9a-4c47-9b4b-7a50799f7ab9'
+    'b5794b79-f235-4f8b-adf6-8cd22c33ab7e'
   ]
   const presetsIdsThreeD = [
     'd44c3e8d-f766-4806-bc06-5686c4b2500b',
@@ -32,7 +32,7 @@ const Carousel = (props) => {
     'dcfe9f1c-9019-4251-845d-62c6c5b93435',
     '403fccf5-ee4d-4050-869a-09d3dbc78b6a',
     'f3d01b21-54ae-4023-9e3d-2def2bdb6e0e',
-    'd44c3e8d-f766-4806-bc06-5686c4b2500b'
+    '2c795ec8-9208-4ee4-9dd4-a22f30b25489'
   ]
   const NextArrow = ({onClick}) => {
     return (

@@ -4,8 +4,7 @@ import {
   ExclamationCircleOutlined,
 } from '@ant-design/icons';
 import Button from "../Button/Button";
-import { Select } from 'antd';
-// import addImage from "../../../assets/add.png";
+import { Menu, Dropdown, Input, Row, Col, Form } from 'antd';
 import connector from "../../../assets/items/connector.png";
 import tubings from "../../../assets/items/tubings.png";
 import bags from "../../../assets/items/bag.png";
@@ -14,197 +13,294 @@ import fittings from "../../../assets/items/fittings.png";
 import bottles from "../../../assets/items/bottle.png";
 import accessories from "../../../assets/items/accessories.png";
 import specialItem from "../../../assets/items/special-item.png";
-import defaultImage from "../../../assets/items/default-image.png";
 import ModalCommon from "../../util/Modal/modalCommon";
+import PresetForm from "../PresetForm/PresetForm";
 import {
-  SettingOutlined,
+  SettingOutlined, MoreOutlined
 } from '@ant-design/icons';
+import Threekit_Player from '../Threekit/Player';
+import { useSelector } from "react-redux";
+import { useActions } from "../../hooks/useActions";
+import { UpdateModels } from '../../redux/modelsHandling/action';
+import dataTubings from "../../data/tubings.json";
+import dataSpecialItem from "../../data/specialItems.json";
+import dataFittings from "../../data/fittings.json";
+import dataFilters from "../../data/filters.json";
+import dataConnectors from "../../data/connectors.json";
+import dataBottles from "../../data/bottles.json";
+import dataBags from "../../data/bags.json";
+import dataAccessories from "../../data/accessories.json";
 import "./DesignConfig.css";
 
-const { Option } = Select;
+const DesignConfig = (props) => {
+  const asset = sessionStorage.getItem("currentIdPresetOnFocusTwoD") ? sessionStorage.getItem("currentIdPresetOnFocusTwoD") : 'b1024215-eb9a-4c47-9b4b-7a50799f7ab9'
+  const modelsData = useSelector(state => state.ModelsHandling);
+  const [isvisible, setModalIsvisible] = useState(false);
+  const [isPDFvisible, setIsPDFvisible] = useState(false);
+  const [pdfRowData, setPdfRowData] = useState(null);
+  const [modal, setModal] = useState({});
+  const actions = useActions({
+    UpdateModels
+  });
+  console.log('modelsData',modelsData)
 
-const DesignConfig = () => {
-  const [modalIsOpen, setIsOpen] = useState(false);
-  const formAttribute = true;
+  const menu = () => {
+    return (
+      <Menu>
+        <Menu.Item key="0">
+          <span>Save</span>
+        </Menu.Item>
+        <Menu.Item key="1" onClick={() => setIsPDFvisible(true)}>
+          <span>Share</span>
+        </Menu.Item>
+      </Menu>
+    )
+  };
 
-  const openModal = () => {
-    setIsOpen(true);
+  const onFinish = (values) => {
+    console.log('Success:', values);
+    window.open("/pdf-page");
+    setModalIsvisible(false);
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
+
+  const showModal = (data) => {
+    setModalIsvisible(true);
+
+    if (data == dataTubings)
+      setModal(data);
+    else if (data == dataSpecialItem)
+      setModal(data);
+    else if (data == dataFittings)
+      setModal(data);
+    else if (data == dataFilters)
+      setModal(data);
+    else if (data == dataConnectors)
+      setModal(data); 
+    else if (data == dataBottles)
+      setModal(data);
+    else if (data == dataBags)
+      setModal(dataBags);
+    else if (data == dataAccessories)
+      setModal(data);
   }
 
-  const afterOpenModal = () => {
-    // references are now sync'd and can be accessed.
-    //subtitle.style.color = '#f00';
+  const handleCancel = () => {
+    setModalIsvisible(false);
   }
 
-  const closeModal = () => {
-    setIsOpen(false);
+  const showTubingsModal = () => {
+    return (
+     <PresetForm data={dataTubings} itemImage={tubings} />
+    )
   }
 
-  function onChange(value) {
-    console.log(`selected ${value}`);
+  const showSpecialItem = () => {
+    return (
+      <PresetForm data={dataSpecialItem} itemImage={specialItem} />
+     )
   }
-  
-  const onBlur = () => {
-    console.log('blur');
+
+  const showFittings = () => {
+    return (
+      <PresetForm data={dataFittings} itemImage={fittings} />
+    )
   }
-  
-  const onFocus = () => {
-    console.log('focus');
+
+  const showFilters = () => {
+    return (
+      <PresetForm data={dataFilters} itemImage={filter} />
+    )
   }
-  
-  /*
-  const onSearch = (val) => {
-    console.log('search:', val);
-  }*/
+
+  const showConnectors = () => {
+    return (
+      <PresetForm data={dataConnectors} itemImage={connector} />
+    )
+  }
+
+  const showBottles = () => {
+    return (
+      <PresetForm data={dataBottles} itemImage={bottles} />
+    )
+  }
+
+  const showBags = () => {
+    return (
+      <PresetForm data={dataBags} itemImage={bags} />
+    )
+  }
+
+  const showAccessories = () => {
+    return (
+      <PresetForm data={dataAccessories} itemImage={accessories} />
+    )
+  }
 
   return (
     <div className="manifold">
-      {modalIsOpen && (
-        <ModalCommon 
-          isModalVisible={openModal} 
-          handleCancel={closeModal} 
-          modalTitle="" 
-          classProp="preset-modal" 
-          modalWidth="40vw"
-        >
-          <form className="preset-modal-form">
-            <div className="preset-modal-image">
-              {/* <img src={addImage} alt="add image" /> */}
-            </div>
-            <h4>Single Use Bag</h4>
-            {formAttribute && (
-              <>
-                <label htmlFor="model">Select a bag</label>
-                <Select
-                  id="model"
-                  showSearch
-                  style={{ width: "100%" }}
-                  placeholder="Select a bag"
-                  optionFilterProp="children"
-                  onChange={onChange}
-                  onFocus={onFocus}
-                  onBlur={onBlur}
-                  /*onSearch={onSearch}
-                  filterOption={(input, option) =>
-                    option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                  }*/
+      {isvisible &&
+        (<ModalCommon modalTitle="" isModalVisible={isvisible} handleCancel={handleCancel} classProp="preset-modal">
+          { modal == dataTubings ? showTubingsModal() : null }
+          { modal == dataSpecialItem ? showSpecialItem() : null }
+          { modal == dataFittings ? showFittings() : null }
+          { modal == dataFilters ? showFilters() : null}
+          { modal == dataConnectors ? showConnectors() : null }
+          { modal == dataBottles ? showBottles() : null}
+          { modal == dataBags ? showBags() : null}
+          { modal == dataAccessories ? showAccessories() : null}
+        </ModalCommon>)
+      })
+      {isPDFvisible && 
+        (<ModalCommon modalTitle="Share by email" isModalVisible={isPDFvisible} handleCancel={() => setIsPDFvisible(false)} classProp="modalPopup">
+          <h3>Lorem ipsum lorem amet</h3>
+          <div className="pdfShareForm">
+            {/* <Row>
+              <Col span={12}><label>Email</label></Col>
+            </Row> */}
+            <Row>
+              <Col span={24}>
+                <Form
+                  name="basic"
+                  labelCol={{
+                    span: 24,
+                  }}
+                  wrapperCol={{
+                    span: 24,
+                  }}
+                  initialValues={{
+                    remember: true,
+                  }}
+                  onFinish={onFinish}
+                  onFinishFailed={onFinishFailed}
                 >
-                  <Option value="Allegro 1">Allegro 1</Option>
-                  <Option value="Allegro 2">Allegro 2</Option>
-                  <Option value="Allegro 3">Allegro 3</Option>
-                </Select>
-              </>
-            )}
-            <div className="measurement-box">
-              <h4>Measurement</h4>
-              <div className="measure-button-box">
-                <Button label="oz" className="measure-button measure-active" icon={null} onClickHandler={() => {}}/>
-                <Button label="liters" className="measure-button" icon={null} onClickHandler={() => {}}/>
-              </div>
-            </div>
-            <label htmlFor="capacity">Capacity</label>
-            <Select
-              id="capacity"
-              showSearch
-              style={{ width: "100%" }}
-              placeholder="---"
-              optionFilterProp="children"
-              onChange={onChange}
-              onFocus={onFocus}
-              onBlur={onBlur}
-              /*onSearch={onSearch}
-              filterOption={(input, option) =>
-                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }*/
-            >
-              <Option value="Custom">Custom</Option>
-              <Option value="0.5 Oz">0.5 Oz</Option>
-              <Option value="33 Oz">33 Oz</Option>
-            </Select>
-          </form>
-        </ModalCommon>
-      )} 
+                  <Form.Item
+                    label="Email"
+                    name="email"
+                    rules={[
+                      {
+                        required: true,
+                        message: 'Please input email address',
+                      },
+                      {
+                        pattern: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                        message: 'Please input valid email address',
+                      },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
+                  <Form.Item
+                    wrapperCol={{
+                      offset: 12,
+                      span: 12,
+                      align: 'center'
+                    }}
+                  >
+                    <Button type="primary" htmlType="submit" label="SEND" style={{ verticalAlign: 'middle' }} />
+                  </Form.Item>
+                </Form>
+              </Col>
+            </Row>
+          </div>
+        </ModalCommon>)
+      }
       <div className="manifold-top-wrapper">
         <h2 className="manifold-title">Configure your manifold</h2>
-        <div className="design-image">
-          {/* <img src={addImage} alt="add image" /> */}
-          <Button label={null} className="config-icon-box" icon={<SettingOutlined className="config-icon" />} onClickHandler={openModal}/>
+        <div className="manifold-image configure-manifold">
+          { <Dropdown overlay={menu} trigger={['click']} placement="bottomRight">
+            <a className="ant-dropdown-link manifold-btn-right" onClick={e => e.preventDefault()}>
+              <MoreOutlined className="icon-manifold-outline" />
+            </a>
+          </Dropdown> }
+          
+          <div id='threekit-embed' style={{height: '100%', width: '100%', position: 'relative', bottom: '33%'}}>
+            <Threekit_Player idSelector='threekit-embed' model={asset}/>
+          </div>
+            <Button icon={<MoreOutlined className="icon-manifold" />} label={null} className="manifold-btn-right" />
+            <Button label={null} className="config-icon-box" icon={<SettingOutlined className="config-icon" />} onClickHandler={() => {}}/> 
         </div>
       </div>
       <div className="manifold-bottom-wrapper">
         <div className="manifold-bottom">
-          <div className="item-container">
+          <div className="item-container" onClick={() => showModal(dataConnectors)}>
             <div className="item-img-box">
-              <img className="item item-1" src={connector} alt="item" />
+              <img className="item item-1" src={connector} alt="item" /*onClick = {(() => actions.UpdateModels('connectors'))}*/ />
             </div>
             <span className="item-title">Connector</span>
           </div>
-          <div className="item-container">
+          <div className="item-container" onClick={() => showModal(dataTubings)}>
             <div className="item-img-box">
-              <img className="item item-2" src={tubings} alt="item" />
+              <img className="item item-2" src={tubings} alt="item" onClick = {(() => actions.UpdateModels('tubings'))}/>
             </div>
             <span className="item-title">Tubings</span>
           </div>
-          <div className="item-container">
+          <div className="item-container" onClick={() => showModal(dataBags)}>
             <div className="item-img-box">
               <img className="item item-3" src={bags} alt="item" />
             </div>
             <span className="item-title">Bags</span>
           </div>
-          <div className="item-container">
+          <div className="item-container" onClick={() => showModal(dataFilters)}>
             <div className="item-img-box">
-              <img className="item item-4" src={filter} alt="item" />
+              <img className="item item-4" src={filter} alt="item" onClick = {(() => actions.UpdateModels('filters'))}/>
             </div>
             <span className="item-title">Filter</span>
           </div>
-          <div className="item-container">
+          <div className="item-container" onClick={() => showModal(dataFittings)}>
             <div className="item-img-box">
-              <img className="item item-5" src={fittings} alt="item" />
+              <img className="item item-5" src={fittings} alt="item" onClick = {(() => actions.UpdateModels('fittings'))}/>
             </div>
             <span className="item-title">Fittings</span>
           </div>
-          <div className="item-container">
+          <div className="item-container" onClick={() => showModal(dataBottles)}>
             <div className="item-img-box">
-              <img className="item item-6" src={bottles} alt="item" />
+              <img className="item item-6" src={bottles} alt="item" onClick = {(() => actions.UpdateModels('bottles'))}/>
             </div>
             <span className="item-title">Bottles</span>
           </div>
-          <div className="item-container">
+          <div className="item-container" onClick={() => showModal(dataAccessories)}>
             <div className="item-img-box">
-              <img className="item item-7" src={accessories} alt="item" />
+              <img className="item item-7" src={accessories} alt="item" /*onClick = {(() => actions.UpdateModels('accessories'))}*/ />
             </div>
             <span className="item-title">Accessories</span>
           </div>
-          <div className="item-container">
+          <div className="item-container" onClick={() => showModal(dataSpecialItem)}>
             <div className="item-img-box">
-              <img className="item item-8" src={specialItem} alt="item" />
+              <img className="item item-8" src={specialItem} alt="item" /*onClick = {(() => actions.UpdateModels('specialItem'))}*/ />
+              {/*console.log('modelsData', modelsData)*/}
             </div>
             <span className="item-title">Special Item</span>
           </div>
+          {/*
           <div className="item-container">
             <div className="item-img-box">
-              <img className="item item-8" src={defaultImage} alt="item" />
+              <img className="item item-9" src={defaultImage} alt="item" />
             </div>
             <span className="item-title">Extra 1</span>
           </div>
           <div className="item-container">
             <div className="item-img-box">
-              <img className="item item-8" src={defaultImage} alt="item" />
+              <img className="item item-10" src={defaultImage} alt="item" />
             </div>
             <span className="item-title">Extra 2</span>
           </div>
           <div className="item-container">
             <div className="item-img-box">
-              <img className="item item-8" src={defaultImage} alt="item" />
+              <img className="item item-11" src={defaultImage} alt="item" />
             </div>
             <span className="item-title">Extra 3</span>
           </div>
           <div className="item-container">
             <div className="item-img-box">
-              <img className="item item-8" src={defaultImage} alt="item" />
+              <img className="item item-12" src={defaultImage} alt="item" />
             </div>
             <span className="item-title">Extra 4</span>
           </div>
+          */}
         </div>
         <div className="manifold-footer">
           <ExclamationCircleOutlined className="icon-manifold-footer" />

@@ -68,3 +68,37 @@ button {
   border: 2px solid transparent;
   cursor: pointer;
 }
+
+.video-player-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.send-button-box {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.send-button {
+  width: 25rem !important;
+}
+
+.pdf-share-title {
+  margin-top: 1rem;
+  font-weight: 600;
+  font-size: 2rem;
+  font-style: italic;
+}
+
+.info-modal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.info-modal-container h1 {
+  font-weight: 700;
+}

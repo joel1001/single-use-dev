@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import loadjs from "loadjs";
 import { useActions } from "../../hooks/useActions";
 import { useSelector } from "react-redux";
-import { ThreekitSetSinglePlayerLoadingStatus, ThreekitSelectModel } from '../../redux/Threekit/actions';
+import { ThreekitSetSinglePlayerLoadingStatus, ThreekitSelectModel, ThreekitInitCameraValues, ThreekitFetchModels } from '../../redux/Threekit/actions';
 
 const Threekit_Player = (props) => {
 
   const { idSelector, model } = props;
   const [playerConfiguration, setPlayerConfiguration] = useState(null);
+  const [playerImgSnap, setPlayerImgSnap] = useState('');
 
   const state = useSelector((store) => {
     return {
@@ -19,10 +20,13 @@ const Threekit_Player = (props) => {
   const actions = useActions({
     ThreekitSetSinglePlayerLoadingStatus,
     ThreekitSelectModel,
+    ThreekitFetchModels,
+    ThreekitInitCameraValues
   });
 
   useEffect(() => {
     actions.ThreekitSetSinglePlayerLoadingStatus(true);
+    actions.ThreekitInitCameraValues(true);
     loadjs(state.Config.threekitScriptURL);
     window
       .threekitPlayer({
@@ -39,10 +43,19 @@ const Threekit_Player = (props) => {
         api.enableApi("configurator");
         api.enableApi("player");
         api.enableApi("store");
-        window.twoDPlayer = api;
-        window.threeDPlayer = api;
-
+        //let metadata = window.threeDPlayer.configurator.getMetadata().categories ? window.threeDPlayer.configurator.getMetadata().categories : undefined;
+        //metadata = metadata ? JSON.parse(metadata) : undefined;
+        // console.log('metadata', metadata)
+        //const number = 10;
+        //await twoD.camera.zoom(number);
+      
         if(idSelector == 'threekit-embed'){
+          window.twoDPlayer = api;
+        }
+        else {
+          window.threeDPlayer = api;
+          window.threeDPlayer.configurator = await api.getConfigurator();  
+          debugger
         }
         //await api.when("loaded");
 
@@ -74,7 +87,7 @@ const Threekit_Player = (props) => {
     
         // let value = values.filter(e => e.assetId == parentConfigurator.configuration["Component 1"].assetId)[0];
 
-        // actions.ThreekitSelectModel(value)
+        // actions.ThreekitSelectModel(value) 
       });
   }, []);
 

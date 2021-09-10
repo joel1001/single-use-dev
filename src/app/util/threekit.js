@@ -99,7 +99,7 @@ const fetchThumbnail = async (
 
     try {
         response = await axios.get(
-            `https://${environment}.threekit.com/api/assets/thumbnail/${productId}`,
+            `https://preview.threekit.com/api/assets/thumbnail/${productId}`,
             {
                 params: {
                     orgId,
@@ -128,11 +128,11 @@ const fetchProducts = async (
 
     try {
         response = await axios.get(
-            `https://${environment}.threekit.com/api/catalog/products`,
+            `https://preview.threekit.com/api/catalog/products`,
             {
                 params: {
-                    bearer_token: bearerToken,
-                    orgId,
+                    bearer_token: "31755654-4081-45d7-88e1-ee46a673b350",
+                    orgId : "0db40a8d-a8fd-4900-8258-963ab37d7eb9",
                     tags,
                     keywords,
                 },

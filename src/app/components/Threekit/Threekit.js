@@ -9,7 +9,7 @@ const Threekit = (props) => {
   return (
     <>
       <div id="player-container">
-        <Threekit_Player className={className} model={assetIdThreeD} />
+        <Threekit_Player className={className} model={assetIdThreeD ? assetIdThreeD : 'c8f518e2-aca8-4564-8931-28aa2c5486bc'} />
       </div>
     </>
   );

@@ -15,6 +15,7 @@
   margin-bottom: 2rem;
   height: 68vh;
   box-sizing: border-box;
+  display: flex;
 }
 
 .manifold {
@@ -155,11 +156,6 @@
   margin-right: 1.5rem;
 }
 
-/*
-.threekit .player___25Zg2.mobile___jM1jy{
-  height: 70% !important;
-}*/
-
 .manifold-bottom-wrapper {
   background-color: #f2f2f2;
   display: flex;
@@ -175,7 +171,7 @@
   width: 96%;
   display: grid;
   justify-items: center;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, min-content);
   column-gap: 2rem;
   row-gap: 2rem;
@@ -245,28 +241,28 @@
 
 
 .item-5 {
-  grid-column: 5 / 6;
-  grid-row: 1 / 2;
-}
-
-
-.item-6 {
-  grid-column: 6 / 7;
-  grid-row: 1 / 2;
-}
-
-
-.item-7 {
   grid-column: 1 / 2;
   grid-row: 2 / 3;
 }
 
 
-.item-8 {
+.item-6 {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
 }
 
+
+.item-7 {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+.item-8 {
+  grid-column: 4 / 5;
+  grid-row: 2 / 3;
+}
+
+/*
 .item-9 {
   grid-column: 3 / 4;
   grid-row: 2 / 3;
@@ -285,7 +281,7 @@
 .item-12 {
   grid-column: 6 / 7;
   grid-row: 2 / 3;
-}
+}*/
 
 .manifold-footer {
   display: flex;
@@ -362,7 +358,7 @@
     display: grid;
     justify-items: center;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, min-content);
+    grid-template-rows: repeat(2, min-content);
     overflow-x: hidden;
   }
 
@@ -404,12 +400,12 @@
     grid-row: 2 / 3;
   }
   
-  
   .item-8 {
     grid-column: 4 / 5;
     grid-row: 2 / 3;
   }
-  
+
+  /*
   .item-9 {
     grid-column: 1 / 2;
     grid-row: 3 / 4;
@@ -428,7 +424,7 @@
   .item-12 {
     grid-column: 4 / 5;
     grid-row: 3 / 4;
-  }
+  } */
 
   .manifold-footer {
     align-self: flex-start;
@@ -443,7 +439,7 @@
     justify-content: center;
     justify-items: center;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4, min-content);
+    grid-template-rows: repeat(3, min-content);
     overflow-x: hidden;
     box-sizing: border-box;
   }
@@ -486,12 +482,12 @@
     grid-row: 3 / 4;
   }
   
-  
   .item-8 {
     grid-column: 2 / 3;
     grid-row: 3 / 4;
   }
   
+  /*
   .item-9 {
     grid-column: 3 / 4;
     grid-row: 3 / 4;
@@ -510,7 +506,7 @@
   .item-12 {
     grid-column: 3 / 4;
     grid-row: 4 / 5;
-  }
+  }*/
 
   .manifold-footer {
     align-self: center;
@@ -522,7 +518,7 @@
   position: absolute;
   z-index: 40;
   font-size: 2.5rem;
-  color: var(--color-medium-gray);
+  color: #fff;
   bottom: -0.5rem;
   right: -0.5rem;
   transform: translate(-50%, -50%);
@@ -531,7 +527,7 @@
 .config-icon-box {
   width: 4rem;
   height: 4rem;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(0, 0, 0, 0.3);
   opacity: 0.7;
   position: absolute;
   cursor: pointer;
@@ -560,52 +556,41 @@
   }
 }
 
-.preset-modal-image {
-  width: 100%;
-  height: 30rem;
-  border-radius: 0.3rem;
-  border: 1px solid rgba(0,0,0, 0.2);
-  box-shadow: 0 2rem 6rem rgba(0,0,0,.15);
-  margin: 2rem auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.preset-modal-form h4 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 0;
-}
-
-.preset-modal-form label {
-  font-size: 1.6rem;
-  font-weight: 700;
-}
-
-.measurement-box {
-  display: flex;
-  justify-content: space-between;
-  margin: 1rem auto;
-}
-
-.measure-button-box {
-  border: 1px solid #d9d9d9;
-  border-radius: 6px;
-}
-
-.measure-button {
-  font-size: 1.4rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  width: 6rem;
-} 
-
-.measure-active {
-  background-color: #d9d9d9;
-  height: 100%;
-}
 .manifold-container .manifold .manifold-top-wrapper .configure-manifold .threekit-embed{
   height: 100%;
   width: 100%
+}
+
+.controllers{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 3%;
+}
+.controllers .controllers-button {
+  background-color: #d3d3d3;
+  height: 5.5vh;
+  width: 3vw;
+  z-index: 10;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 10px;
+  position: relative
+
+}
+.manifold-content{
+  width: 100%;
+}
+.controllers .controllers-button span{
+  bottom: 20%;
+  right: 8%;
+  position: relative;
+}
+@media(max-width:1500px){
+  .controllers{
+    padding-bottom: 0%;
+  }
 }
